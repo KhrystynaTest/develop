@@ -36,9 +36,9 @@ function App() {
           </div>
 
           <ul>
-            {list.map((item) => {
+            {list.map((item, index) => {
               return (
-                <li>
+                <li key={index}>
                   <p>{item}</p>
                   <p onClick={() => deleteItem(item)} className={'deleteButton'}>Delete</p>
                 </li>
