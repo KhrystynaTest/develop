@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v1 as uuid } from 'uuid';
 import "./App.css";
 import Title from "./components/Title";
 import Header from "./components/Header";
@@ -16,12 +17,14 @@ function App() {
   const addItem = () => {
     // if (inputValue.trim() === '') return
 
-    setList([...list, inputValue]);
+    //setList([...list, inputValue]);
+    setList([...list, {id: uuid(), value: inputValue}]);
     setInputValue("");
   };
 
   const deleteItem = (el) => {
-    setList(list.filter((item) => item !== el));
+    setList(list.filter((item) => item.id !== el));
+    setList(list.filter((item) => item.id !== el));
   };
 
   return (

@@ -4,11 +4,11 @@ import "../App.css";
 const List = ({ list, handleDelete }) => {
   return (
     <ul>
-      {list.map((item, index) => {
+      {list.map((item) => {
         return (
-          <li key={index}>
-            <p>{item}</p>
-            <p onClick={() => handleDelete(item)} className={"deleteButton"}>
+          <li key={item.id}>
+            <p>{item.value}</p>
+            <p onClick={() => handleDelete(item.id)} className={"deleteButton"}>
               Delete
             </p>
           </li>
