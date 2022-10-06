@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "./List.css";
 
 const List = ({ list, handleDelete }) => {
   return (
@@ -17,4 +17,5 @@ const List = ({ list, handleDelete }) => {
     </ul>
   );
 };
+
 export default List;

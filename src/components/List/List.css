@@ -1,0 +1,27 @@
+.list {
+  max-width: 250px;
+}
+
+ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.sendButton {
+  min-width: 70px;
+  padding: 5px 10px;
+  background: #76b9f5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 1px 2px 0 #b6b6b6;
+}
+
+.sendButton.disabled {
+  opacity: 0.3;
+}
+
+.deleteButton {
+  cursor: pointer;
+}

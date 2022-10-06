@@ -3,11 +3,6 @@ h1 {
   margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 header {
   background: #76b9f5;
   padding: 10px 20px;
@@ -18,18 +13,8 @@ main {
   padding: 10px;
 }
 
-.list {
-  max-width: 250px;
-}
-
 ul {
   padding: 0;
-}
-
-ul li {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
 }
 
 .createSection {
@@ -39,8 +24,5 @@ ul li {
 
 .createSection input {
   width: 100%;
-}
-
-.deleteButton {
-  cursor: pointer;
+  padding: 5px;
 }
