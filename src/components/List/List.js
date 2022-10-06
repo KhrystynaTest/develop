@@ -1,5 +1,5 @@
-import React from "react";
-import "./List.css";
+import React from 'react';
+import './List.scss';
 
 const List = ({ list, handleDelete }) => {
   return (
@@ -8,7 +8,7 @@ const List = ({ list, handleDelete }) => {
         return (
           <li key={item.id}>
             <p>{item.value}</p>
-            <p onClick={() => handleDelete(item.id)} className={"deleteButton"}>
+            <p onClick={() => handleDelete(item.id)} className={'deleteButton'}>
               Delete
             </p>
           </li>

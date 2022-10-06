@@ -5,7 +5,7 @@ const Header = () => {
     <header>
       <p>Title</p>
     </header>
-  )
-}
+  );
+};
 
-export default  Header;
+export default Header;

@@ -1,11 +1,9 @@
-.list {
-  max-width: 250px;
-}
-
-ul li {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
+ul {
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
 }
 
 .sendButton {
@@ -18,8 +16,10 @@ ul li {
   box-shadow: 2px 1px 2px 0 #b6b6b6;
 }
 
-.sendButton.disabled {
-  opacity: 0.3;
+.sendButton {
+  &.disabled {
+    opacity: 0.3;
+  }
 }
 
 .deleteButton {
