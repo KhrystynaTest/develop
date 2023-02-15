@@ -1,13 +1,13 @@
 import React from "react";
-import "../App.css";
+import "../../App.css";
 
-const List = ({ list, handleDelete }) => {
+const List = ({ list, handleDelete, handleUpdate }) => {
   return (
     <ul>
       {list.map((item) => {
         return (
           <li key={item.id}>
-            <p>{item.value}</p>
+            <p>{item.text}</p>
             <p onClick={() => handleDelete(item.id)} className={"deleteButton"}>
               Delete
             </p>
