@@ -1,132 +1,106 @@
-import React, { useEffect, useState } from "react";
-import { v1 as uuid } from "uuid";
-//import './App.scss';
-import Title from "./components/Title";
-import Header from "./components/Header";
-import List from "./components/List/List";
-import {
-  fetchDeleteTodo,
-  fetchTodos,
-  fetchAddTodo,
-  fetchUpdateTodo,
-  fetchUsers,
-  fetchUser,
-} from "./api";
-import Card from "./components/Card/Card";
-import TableInformation from "./components/TableInformation/TableInformation";
-import Table from "./components/Table/Table";
-import { usersColumns } from "./constants";
+import React, { useEffect, useState } from 'react';
+import { v1 as uuid } from 'uuid';
+import Title from './components/Title';
+import { fetchUsers, fetchUsersByParams, fetchDeleteUsers, fetchSearch } from './api';
+
+import TableInformation from './components/TableInformation/TableInformation';
+import Table from './components/Table/Table';
+import { usersColumns } from './constants';
+import { Box, Button } from "@mui/material";
+import { css } from '@emotion/css';
+import Input from './components/Input/Input';
+
+const styless = {
+    root: css`
+        display: flex;
+    `,
+    addButton: css`
+        background: green;
+    `,
+};
 
 function App() {
-  const [inputValue, setInputValue] = useState("");
-  const [users, setUsers] = useState("");
-  const [list, setList] = useState([]);
-  const listLength = list.length;
+    const [inputSearchValue, setInputSearchValue] = useState('');
+    const [users, setUsers] = useState('');
 
-  useEffect(() => {
-    fetchTodos()
-      .then((res) => setList(res))
-      .catch((err) => console.log(err));
-    // fetchUser()
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
-    fetchUsers()
-      .then((res) => setUsers(res))
-      .catch((error) => console.log("Error:", error));
-  }, []);
+    useEffect(() => {
+        fetchUsers()
+            .then((res) => setUsers(res))
+            .catch((error) => console.log('Error:', error));
+    }, []);
 
-  const changeInput = (e) => setInputValue(e.target.value);
-  const handleEdit = (id) => console.log(id);
-  const handleDelete = (id) => console.log(id);
+    const handleEdit = (id) => console.log(id);
+    const handleDelete = (id) => {
+        return fetchDeleteUsers(id)
+            .then((res) => setUsers(users.filter((item) => item.id !== id)))
+            .catch((error) => console.log('Error:', error));
+    };
 
-  const addItem = () => {
-    const id = uuid();
+    const handleChangePage = (e, page) => {
+        console.log(e);
+        console.log(page);
+        fetchUsersByParams(page, 5)
+            .then((res) => setUsers(res))
+            .catch((error) => console.log('Error:', error));
+    };
 
-    fetchAddTodo({ id, text: inputValue, completed: false })
-      .then(() => {
-        setList([...list, { id: id, text: inputValue }]);
-        setInputValue("");
-      })
-      .catch((err) => console.log(err));
-  };
+    const test = (obj) => {
+        const len = Object.keys(obj).length;
+        let counter = 0;
+        const arr = [];
+        let str = '';
 
-  const updateItem = (id) => {
-    return fetchUpdateTodo({ id, text: inputValue, completed: false });
-  };
+        if (len === 0) {
+            console.log(str);
+            return str;
+        } else {
+            for (let key in obj) {
+                counter++;
+                arr.push(
+                    `${counter === 1 ? '?' : ''}_${key}=${obj[key]}${counter !== len ? '&' : ''}`,
+                );
+                str =
+                    str +
+                    `${counter === 1 ? '?' : ''}_${key}=${obj[key]}${counter !== len ? '&' : ''}`;
+            }
+        }
 
-  const deleteItem = (el) => {
-    fetchDeleteTodo(el)
-      .then(() => setList(list.filter((item) => item.id !== el)))
-      .catch((err) => console.log(err));
-  };
+        // console.log(str);
 
-  const test = (obj) => {
-    const len = Object.keys(obj).length;
-    let counter = 0;
-    const arr = [];
-    let str = "";
+        return str;
+    };
 
-    if (len === 0) {
-      console.log(str);
-      return str;
-    } else {
-      for (let key in obj) {
-        counter++;
-        arr.push(
-          `${counter === 1 ? "?" : ""}_${key}=${obj[key]}${
-            counter !== len ? "&" : ""
-          }`
-        );
-        str =
-          str +
-          `${counter === 1 ? "?" : ""}_${key}=${obj[key]}${
-            counter !== len ? "&" : ""
-          }`;
-      }
-    }
+    const handleChangeSearch = (e) => {
+        setInputSearchValue(e.target.value);
+        fetchSearch(e.target.value.trim())
+            .then((res) => setUsers(res))
+            .catch((error) => console.log('Error:', error));
+    };
 
-    // console.log(str);
+    return (
+        <div className={'App'}>
+            <main>
+                <Title title={'Users'} />
 
-    return str;
-  };
+                <Box>
 
-  return (
-    <div className={"App"}>
-      <Header />
-      {test({})}
-      <main>
-        <div className={"list"}>
-          <Title title={"List"} />
+                    <Input value={inputSearchValue} handleChange={handleChangeSearch} />
 
-          <span>Added {listLength} items</span>
+                    <Button className={css(styless.addButton)}>Add employee</Button>
+                </Box>
+                <Table
+                    rows={users}
+                    cols={usersColumns}
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                />
 
-          <div className={"createSection"}>
-            <input
-              onChange={changeInput}
-              value={inputValue}
-              placeholder="Add Item"
-            />
-            <button onClick={addItem} disabled={inputValue.trim() === ""}>
-              Add
-            </button>
-          </div>
-          <List
-            list={list}
-            handleDelete={deleteItem}
-            handleUpdate={updateItem}
-          />
+                {/*<Pagination count={Math.ceil(users.length / 5)} handleChange={handleChangePage} />*/}
+
+                {/*<TableInformation />*/}
+                {console.log(users)}
+            </main>
         </div>
-        <Card />
-        <Table
-          rows={users}
-          cols={usersColumns}
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-        />
-
-        {/*<TableInformation />*/}
-      </main>
-    </div>
-  );
+    );
 }
 export default App;

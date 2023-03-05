@@ -1,30 +1,80 @@
-import React from "react";
-import styles from "./card.module.css";
-import Table from "../Table/Table";
+import React from 'react';
+//import styles from "./card.module.css";
+import Table from '../Table/Table';
+import { Box, Divider, Grid, Paper, Typography } from '@mui/material';
+import { basicUserInfo } from '../../constants';
+import TableRow from '../TableRow/TableRow';
+import { useTheme } from '@mui/material/styles';
+import { styles } from './styles';
+import { css } from '@emotion/css';
+const information = {
+    id: 'name',
+    name: 'Chelsey',
+    lastName: 'Dietrich',
+    city: 'Kyiv',
+    country: 'Ukraine',
+};
 
 const Card = () => {
-  return (
-    <div className="card">
-      <div className={styles.avatarBlock}>
-        <img
-          src="https://t4.ftcdn.net/jpg/00/65/10/47/360_F_65104718_x17a76wzWKIm3BlhA6uyYVkDs9982c6q.jpg"
-          alt="Avatar"
-          style={{ width: "100% " }}
-          className={styles.avatarImage}
-        />
-      </div>
-      <div>
-        <h4>
-          <b>John Smith</b>
-        </h4>
-        <p>Architect & Engineer</p>
-        <p>Project: App Profile</p>
-        <p>email@gmail.com</p>
-        <p>304 Oak | Ferandale | Randburg</p>
-        <p>Active since 01.05.2021</p>
-      </div>
-    </div>
-  );
+    return (
+        <Box boxShadow={3} p={3} className={css(styles.card)}>
+            <div>
+                <div className={css(styles.avatarBlock)}>
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                        alt="Avatar"
+                        style={{ width: '100%' }}
+                    />
+                </div>
+                <div className={css(styles.infoBlock)}>
+                    <Typography variant="h6" component="p">
+                        John Smith
+                    </Typography>
+                    <Typography component="p">Architect & Engineer</Typography>
+                    <Typography component="p">Project: App Profile</Typography>
+
+                    <Typography component="p">email@gmail.com</Typography>
+                    {/*<Typography component="p" color={"grey"}>*/}
+                    {/*  304 Oak | Ferandale | Randburg*/}
+                    {/*</Typography>*/}
+                    <Typography component="p">Active since 01.05.2021</Typography>
+                </div>
+            </div>
+
+            <Divider orientation="vertical" flexItem sx={{ mx: 3 }} />
+
+            <div>
+                <Typography
+                    component="p"
+                    color={'primary'}
+                    gutterBottom
+                    sx={{ mt: 2, fontWeight: 600 }}
+                >
+                    Basic Information
+                </Typography>
+                <Table cols={basicUserInfo} rows={[information]} />
+                <Typography
+                    component="p"
+                    color={'primary'}
+                    gutterBottom
+                    sx={{ mt: 2, fontWeight: 600 }}
+                >
+                    Company (Personal) Information
+                </Typography>
+                <Table cols={basicUserInfo} rows={[information]} />
+                <Typography
+                    component="p"
+                    color={'primary'}
+                    gutterBottom
+                    sx={{ mt: 2, fontWeight: 600 }}
+                >
+                    Occupation Information
+                </Typography>
+                <Table cols={basicUserInfo} rows={[information]} />
+                {/*<TableRow obj={information}/>*/}
+            </div>
+        </Box>
+    );
 };
 
 export default Card;

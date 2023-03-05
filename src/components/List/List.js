@@ -1,20 +1,24 @@
-import React from "react";
-import "../../App.css";
+import React from 'react';
+import '../../App.css';
+import { List as MuiList, ListItem, ListItemButton, ListItemText } from '@mui/material';
 
 const List = ({ list, handleDelete, handleUpdate }) => {
-  return (
-    <ul>
-      {list.map((item) => {
-        return (
-          <li key={item.id}>
-            <p>{item.text}</p>
-            <p onClick={() => handleDelete(item.id)} className={"deleteButton"}>
-              Delete
-            </p>
-          </li>
-        );
-      })}
-    </ul>
-  );
+    return (
+        <MuiList>
+            {list.map((item) => {
+                return (
+                    <ListItem key={item.id}>
+                        <ListItemText>{item.text}</ListItemText>
+                        <ListItemButton
+                            onClick={() => handleDelete(item.id)}
+                            className={'deleteButton'}
+                        >
+                            Delete
+                        </ListItemButton>
+                    </ListItem>
+                );
+            })}
+        </MuiList>
+    );
 };
 export default List;

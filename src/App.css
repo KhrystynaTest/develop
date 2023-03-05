@@ -1,46 +1,46 @@
 p,
 h1 {
-  margin: 0;
+    margin: 0;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 header {
-  background: #76b9f5;
-  padding: 10px 20px;
-  color: #ffffff;
+    background: #76b9f5;
+    padding: 10px 20px;
+    color: #ffffff;
 }
 
 main {
-  padding: 10px;
+    padding: 10px;
 }
 
 .list {
-  max-width: 250px;
+    max-width: 250px;
 }
 
 ul {
-  padding: 0;
+    padding: 0;
 }
 
 ul li {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
 }
 
 .createSection {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .createSection input {
-  width: 100%;
+    width: 100%;
 }
 
 .deleteButton {
-  cursor: pointer;
+    cursor: pointer;
 }

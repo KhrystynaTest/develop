@@ -1,6 +1,15 @@
+.card {
+    display: flex;
+}
 .avatarBlock {
-  width: 300px;
+    display: flex;
+    width: 100px;
+    margin: 0 auto 20px auto;
 }
 .avatarImage {
-  width: 100%;
+    width: 100%;
+}
+
+.infoBlock {
+    text-align: center;
 }

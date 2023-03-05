@@ -1,4 +1,4 @@
-import axiosInstance from "./utils/axiosInstance";
+import axiosInstance from './utils/axiosInstance';
 
 // export const fetchUsers = () => {
 //   return fetch("http://localhost:3001/users").then((response) =>
@@ -7,40 +7,44 @@ import axiosInstance from "./utils/axiosInstance";
 // };
 
 export const fetchAddTodo = async (obj) => {
-  await axiosInstance.post("todos", obj);
+    await axiosInstance.post('todos', obj);
 };
 
 export const fetchUpdateTodo = async (obj) => {
-  await axiosInstance.put(`todos/${obj.id}`, obj);
+    await axiosInstance.put(`todos/${obj.id}`, obj);
 };
 
 export const fetchUpdatePatchTodo = async (obj) => {
-  await axiosInstance.patch(`todos/${obj.id}`, obj);
+    await axiosInstance.patch(`todos/${obj.id}`, obj);
 };
 
 export const fetchUsers = async () =>
-  await axiosInstance.get("/users").then((response) => response.data);
+    await axiosInstance.get('/users').then((response) => response.data);
 
-export const fetchUser = () =>
-  axiosInstance.get("/users/1").then((response) => response.data);
+export const fetchUser = () => axiosInstance.get('/users/1').then((response) => response.data);
 
-export const fetchTodos = () =>
-  axiosInstance.get("/todos").then((response) => response.data);
+export const fetchTodos = () => axiosInstance.get('/todos').then((response) => response.data);
 
 export const fetchDeleteTodo = (id) => {
-  return axiosInstance.delete(`/todos/${id}`);
+    return axiosInstance.delete(`/todos/${id}`);
 };
 
 export const fetchUsersByPageNumber = (number) =>
-  axiosInstance.get(`/users?_page=${number}`).then((response) => response.data);
+    axiosInstance.get(`/users?_page=${number}`).then((response) => response.data);
 
 export const fetchUsersBySearch = (string) =>
-  axiosInstance.get(`/users?q=${string}`).then((response) => response.data);
+    axiosInstance.get(`/users?q=${string}`).then((response) => response.data);
 
 export const fetchUsersByParams = (page, limit) =>
-  axiosInstance
-    .get(`/users?_page=${page}&_limit=${limit}`)
-    .then((response) => response.data);
+    axiosInstance.get(`/users?_page=${page}&_limit=${limit}`).then((response) => response.data);
+
+export const fetchDeleteUsers = (id) => {
+    return axiosInstance.delete(`/users/${id}`);
+};
+
+export const fetchSearch = (searchString) => {
+    return axiosInstance.get(`/users?q=${searchString}`).then((response) => response.data);
+};
 
 // https://my-json-server.typicode.com/KhrystynaTest/develop/todos'
 //http://localhost:3001/users?name=Ervin%20Howell // by name Ervin Howell
