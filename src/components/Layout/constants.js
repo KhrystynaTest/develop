@@ -8,7 +8,7 @@ export const menuItems = [
     {
         text: 'Profile',
         icon: <BadgeOutlinedIcon />,
-        path: 'user-info',
+        path: '',
     },
     {
         text: 'Users',

@@ -1,34 +1,37 @@
-import React from 'react';
-//import styles from "./card.module.css";
+import React, { useEffect, useState } from 'react';
 import Table from '../Table/Table';
 import { Box, Divider, Grid, Paper, Typography } from '@mui/material';
-import { basicUserInfo } from '../../constants';
+import { basicUserInfo } from './constants';
 import TableRow from '../TableRow/TableRow';
-import { useTheme } from '@mui/material/styles';
-import { styles } from './styles';
-import { css } from '@emotion/css';
-const information = {
-    id: 'name',
-    name: 'Chelsey',
-    lastName: 'Dietrich',
-    city: 'Kyiv',
-    country: 'Ukraine',
-};
+
+import styles from './styles';
+
+import useClasses from '../../useClasses';
+import { fetchUser } from '../../api';
 
 const Card = () => {
+    const [user, setUser] = useState('');
+    const { card, avatarBlock, infoBlock, avatarImage, informationBlock } = useClasses(styles);
+
+    useEffect(() => {
+        fetchUser(1)
+            .then((res) => setUser(res))
+            .catch((error) => console.log('Error:', error));
+    }, []);
+    console.log(user);
     return (
-        <Box boxShadow={3} p={3} className={css(styles.card)}>
+        <Box boxShadow={3} p={3} className={card}>
             <div>
-                <div className={css(styles.avatarBlock)}>
+                <div className={avatarBlock}>
                     <img
                         src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                         alt="Avatar"
-                        style={{ width: '100%' }}
+                        className={avatarImage}
                     />
                 </div>
-                <div className={css(styles.infoBlock)}>
+                <div className={infoBlock}>
                     <Typography variant="h6" component="p">
-                        John Smith
+                        <b>John Smith</b>
                     </Typography>
                     <Typography component="p">Architect & Engineer</Typography>
                     <Typography component="p">Project: App Profile</Typography>
@@ -43,34 +46,19 @@ const Card = () => {
 
             <Divider orientation="vertical" flexItem sx={{ mx: 3 }} />
 
-            <div>
-                <Typography
-                    component="p"
-                    color={'primary'}
-                    gutterBottom
-                    sx={{ mt: 2, fontWeight: 600 }}
-                >
+            <div className={informationBlock}>
+                <Typography component="p" color={'primary'} gutterBottom sx={{fontWeight: 600 }}>
                     Basic Information
                 </Typography>
-                <Table cols={basicUserInfo} rows={[information]} />
-                <Typography
-                    component="p"
-                    color={'primary'}
-                    gutterBottom
-                    sx={{ mt: 2, fontWeight: 600 }}
-                >
+                <Table cols={basicUserInfo} rows={[user]} />
+                <Typography component="p" color={'primary'} gutterBottom sx={{fontWeight: 600 }}>
                     Company (Personal) Information
                 </Typography>
-                <Table cols={basicUserInfo} rows={[information]} />
-                <Typography
-                    component="p"
-                    color={'primary'}
-                    gutterBottom
-                    sx={{ mt: 2, fontWeight: 600 }}
-                >
+                <Table cols={basicUserInfo} rows={[user]} />
+                <Typography component="p" color={'primary'} gutterBottom sx={{fontWeight: 600 }}>
                     Occupation Information
                 </Typography>
-                <Table cols={basicUserInfo} rows={[information]} />
+                <Table cols={basicUserInfo} rows={[user]} />
                 {/*<TableRow obj={information}/>*/}
             </div>
         </Box>

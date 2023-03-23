@@ -1,46 +1,9 @@
-p,
-h1 {
+html,
+body {
     margin: 0;
-}
-
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-header {
-    background: #76b9f5;
-    padding: 10px 20px;
-    color: #ffffff;
+    padding: 0;
 }
 
 main {
     padding: 10px;
-}
-
-.list {
-    max-width: 250px;
-}
-
-ul {
-    padding: 0;
-}
-
-ul li {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-}
-
-.createSection {
-    display: flex;
-    flex-direction: row;
-}
-
-.createSection input {
-    width: 100%;
-}
-
-.deleteButton {
-    cursor: pointer;
 }

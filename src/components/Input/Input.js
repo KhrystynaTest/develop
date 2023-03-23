@@ -1,19 +1,22 @@
 import React from 'react';
-import { InputAdornment, TextField } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { InputAdornment, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
-const Input = ({ value, placeholder, handleChange }) => {
-    return <TextField value={value} onChange={handleChange}
-                      label="Standard" variant="standard"
-                      placeholder={placeholder}
-                      InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                                <SearchIcon color="primary" />
-                            </InputAdornment>
-                          ),
-                      }}
-    />;
+const Input = ({ value, handleChange, adornment, ...props }) => {
+    console.log(props);
+    return (
+        <TextField
+            value={value}
+            onChange={handleChange}
+            //label="Standard"
+            variant="standard"
+            // size="small"
+            InputProps={{
+                [adornment.position]: <InputAdornment>{adornment.icon}</InputAdornment>,
+            }}
+            {...props}
+        />
+    );
 };
 
 export default Input;

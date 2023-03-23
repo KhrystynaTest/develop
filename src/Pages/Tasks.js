@@ -44,22 +44,16 @@ function Tasks() {
     };
 
     return (
-        <div className={'App'}>
-            <main>
-                <div className={'list'}>
-                    <Title title={'List'} />
+        <div>
+            <span>Added {listLength} items</span>
 
-                    <span>Added {listLength} items</span>
-
-                    <div className={'createSection'}>
-                        <input onChange={changeInput} value={inputValue} placeholder="Add Item" />
-                        <button onClick={addItem} disabled={inputValue.trim() === ''}>
-                            Add
-                        </button>
-                    </div>
-                    <List list={list} handleDelete={deleteItem} handleUpdate={updateItem} />
-                </div>
-            </main>
+            <div className={'createSection'}>
+                <input onChange={changeInput} value={inputValue} placeholder="Add Item" />
+                <button onClick={addItem} disabled={inputValue.trim() === ''}>
+                    Add
+                </button>
+            </div>
+            <List list={list} handleDelete={deleteItem} handleUpdate={updateItem} />
         </div>
     );
 }

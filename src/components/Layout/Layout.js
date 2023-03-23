@@ -1,44 +1,33 @@
 import React from 'react';
-import { css } from '@emotion/css';
-import Header from '../Header';
+import { Outlet } from 'react-router-dom';
 import { Typography, AppBar, Toolbar, Box } from '@mui/material';
-import { SubjectOutlined } from '@mui/icons-material';
-//import {useHistory, useLocation} from 'react-router-dom'
-import { useTheme } from '@mui/material/styles';
-import App from '../../App';
-import { NavLink, Outlet } from 'react-router-dom';
-import { menuItems } from './constants';
-import Drawer from '../Drawer/Drawer';
-const styles = {
-    root: css`
-        display: flex;
-    `,
-};
+import Menu from '../Menu/Menu';
 
-const Layout = ({ children }) => {
-    //const histoty = useHistory()
-    //const location = useHLocation()
-    const theme = useTheme();
-    const toolbar = theme.mixins.toolbar;
+import useClasses from '../../useClasses';
+import styles from './styles';
+
+const Layout = () => {
+    const { main, toolbar, content, root } = useClasses(styles);
+
     return (
-        <div className={styles.root}>
-            {/*<Header />*/}
-
-            <AppBar className={styles.appbar}>
+        <>
+            <AppBar>
                 <Toolbar>
                     <Typography>Hello</Typography>
                 </Toolbar>
             </AppBar>
 
-            <Drawer />
+            <Box className={toolbar}></Box>
 
-            <main>
-                <Box sx={toolbar}></Box>
-                <Outlet />
-                {/*{children}*/}
-                {/*<App/>*/}
+            <main className={main}>
+                <Box className={root}>
+                    <Menu />
+                    <Box className={content}>
+                        <Outlet />
+                    </Box>
+                </Box>
             </main>
-        </div>
+        </>
     );
 };
 

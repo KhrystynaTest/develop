@@ -9,12 +9,7 @@ const List = ({ list, handleDelete, handleUpdate }) => {
                 return (
                     <ListItem key={item.id}>
                         <ListItemText>{item.text}</ListItemText>
-                        <ListItemButton
-                            onClick={() => handleDelete(item.id)}
-                            className={'deleteButton'}
-                        >
-                            Delete
-                        </ListItemButton>
+                        <ListItemButton onClick={() => handleDelete(item.id)}>Delete</ListItemButton>
                     </ListItem>
                 );
             })}

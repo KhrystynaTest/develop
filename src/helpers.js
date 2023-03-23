@@ -11,8 +11,7 @@ export const buildQueryParams = (obj) => {
         for (let key in obj) {
             counter++;
             arr.push(`${counter === 1 ? '?' : ''}_${key}=${obj[key]}${counter !== len ? '&' : ''}`);
-            str =
-                str + `${counter === 1 ? '?' : ''}_${key}=${obj[key]}${counter !== len ? '&' : ''}`;
+            str = str + `${counter === 1 ? '?' : ''}_${key}=${obj[key]}${counter !== len ? '&' : ''}`;
         }
     }
 

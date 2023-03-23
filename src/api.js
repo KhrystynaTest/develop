@@ -18,10 +18,9 @@ export const fetchUpdatePatchTodo = async (obj) => {
     await axiosInstance.patch(`todos/${obj.id}`, obj);
 };
 
-export const fetchUsers = async () =>
-    await axiosInstance.get('/users').then((response) => response.data);
+export const fetchUsers = async () => await axiosInstance.get('/users').then((response) => response.data);
 
-export const fetchUser = () => axiosInstance.get('/users/1').then((response) => response.data);
+export const fetchUser = (id) => axiosInstance.get(`/users/${id}`).then((response) => response.data);
 
 export const fetchTodos = () => axiosInstance.get('/todos').then((response) => response.data);
 
@@ -32,8 +31,7 @@ export const fetchDeleteTodo = (id) => {
 export const fetchUsersByPageNumber = (number) =>
     axiosInstance.get(`/users?_page=${number}`).then((response) => response.data);
 
-export const fetchUsersBySearch = (string) =>
-    axiosInstance.get(`/users?q=${string}`).then((response) => response.data);
+export const fetchUsersBySearch = (string) => axiosInstance.get(`/users?q=${string}`).then((response) => response.data);
 
 export const fetchUsersByParams = (page, limit) =>
     axiosInstance.get(`/users?_page=${page}&_limit=${limit}`).then((response) => response.data);
